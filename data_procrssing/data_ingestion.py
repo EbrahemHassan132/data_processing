@@ -21,6 +21,15 @@ weather_data_URL = "https://raw.githubusercontent.com/Explore-AI/Public-Data/mas
 weather_mapping_data_URL = "https://raw.githubusercontent.com/Explore-AI/Public-Data/master/Maji_Ndogo/Weather_data_field_mapping.csv"
 
 def create_db_engine(db_path):
+    """
+    Create an SQL engine using the create_engine function from sqlalchemy.
+
+    Parameters:
+    - db_path (str): The path to the database.
+
+    Returns:
+    - sqlalchemy.engine.base.Engine: The created engine object.
+    """
     try:
         engine = create_engine(db_path)
         # Test connection
@@ -37,6 +46,16 @@ def create_db_engine(db_path):
         raise e
     
 def query_data(engine, sql_query):
+    """
+    Query the data using the pandas method read_sql_query.
+
+    Parameters:
+    - engine (sqlalchemy.engine.base.Engine): The engine.
+    - sql_query (str): The SQL query.
+
+    Returns:
+    - pd.DataFrame: The result DataFrame of the query.
+    """
     try:
         with engine.connect() as connection:
             df = pd.read_sql_query(text(sql_query), connection)
@@ -55,6 +74,15 @@ def query_data(engine, sql_query):
         raise e
     
 def read_from_web_CSV(URL):
+    """
+    Read a CSV file from the web using the pandas method read_csv.
+
+    Parameters:
+    - URL (str): The URL of the CSV data.
+
+    Returns:
+    - pd.DataFrame: The DataFrame containing the data from the CSV file.
+    """
     try:
         df = pd.read_csv(URL)
         logger.info("CSV file read successfully from the web.")
