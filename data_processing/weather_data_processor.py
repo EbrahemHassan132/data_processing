@@ -2,7 +2,7 @@ import re
 import numpy as np
 import pandas as pd
 import logging
-from data_procrssing.data_ingestion import read_from_web_CSV
+from data_processing.data_ingestion import read_from_web_CSV
 
 
 class WeatherDataProcessor:
